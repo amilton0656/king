@@ -101,14 +101,14 @@ exports.getUsuarios = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  const { nome, senha } = req.body
+  const { email, senha } = req.body
 
   Usuario.sequelize.query(`
   select id, nome
   from usuarios
-  where nome = ?
+  where email = ?
   and senha = ?`,
-    { replacements: [nome, senha] })
+    { replacements: [email, senha] })
     .then(usuarios => {
       const resp = usuarios[0]
 
