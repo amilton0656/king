@@ -15,7 +15,7 @@ router.post('/login', controller.login)
 router.post('', md_auth.auth, controller.addUsuario)
 router.put('', md_auth.auth, controller.updUsuario)
 router.delete('/:id', md_auth.auth, controller.delUsuario)
-router.get('', controller.getUsuarios)
+router.get('', md_auth.auth, controller.getUsuarios)
 // router.get('/lista', md_auth.auth, controller.getUsuarios)
 
 module.exports = router
