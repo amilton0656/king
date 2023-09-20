@@ -16,6 +16,8 @@ exports.addUsuario = (req, res, next) => {
 exports.updUsuario = (req, res, next) => {
   const id = req.body.id
   const body = req.body
+  console.log(id)
+  console.log(body)
   Usuario.findByPk(id)
     .then(usuario => {
       usuario.update(body)
