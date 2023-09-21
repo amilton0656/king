@@ -12,6 +12,7 @@ const Usuario = sequelize.define('usuarios', {
   nome: Sequelize.STRING(60),
   email: Sequelize.STRING(70),
   senha: Sequelize.STRING(20),
+  imagem: Sequelize.BLOB('medium'),
 }, {
   tableName: 'usuarios',
   timestamp: false,
