@@ -1,5 +1,6 @@
 const Usuario = require('../models/mo_usuario')
 const jwt = require('../util/jwt')
+const email = require('../testes/email')
 
 exports.addUsuario = (req, res, next) => {
   const usuario = req.body
@@ -87,6 +88,16 @@ exports.getUsuarioByNome = (req, res, next) => {
     });
 }
 
+exports.emailUsuarios = (req, res, next) => {
+  const { to, subject, text } = req.body
+  email(to, subject, text)
+
+
+
+
+  // email('amilton0656@gmail.com', 'teste', 'conteudo')
+  res.status(500).json('dentro do email.')
+}
 
 exports.getUsuarios = (req, res, next) => {
   Usuario.sequelize.query(`
