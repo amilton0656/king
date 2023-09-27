@@ -17,6 +17,7 @@ router.patch('', md_auth.auth, controller.updUsuario)
 router.delete('/:id', md_auth.auth, controller.delUsuario)
 router.get('', md_auth.auth, controller.getUsuarios)
 router.post('/email', controller.emailUsuarios)
+router.get('/ping', controller.pingUsuario)
 // router.get('/lista', md_auth.auth, controller.getUsuarios)
 
 module.exports = router

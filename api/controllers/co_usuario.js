@@ -92,11 +92,12 @@ exports.emailUsuarios = (req, res, next) => {
   const { to, subject, text } = req.body
   email(to, subject, text)
 
+  res.status(200).json('Email anviado.')
+}
 
+exports.pingUsuario = (req, res, next) => {
 
-
-  // email('amilton0656@gmail.com', 'teste', 'conteudo')
-  res.status(500).json('dentro do email.')
+  res.status(200).json('ping ok.')
 }
 
 exports.getUsuarios = (req, res, next) => {

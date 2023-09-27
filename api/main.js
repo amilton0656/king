@@ -31,6 +31,12 @@ app.use('/pessoacomplemento', pessoacomplementoRoutes);
 const pessoacontatoRoutes = require('./routes/ro_pessoa_contato');
 app.use('/pessoacontato', pessoacontatoRoutes);
 
+const mkthistoricoRoutes = require('./routes/ro_mkt_historico');
+app.use('/mkthistorico', mkthistoricoRoutes);
+
+const mktitemRoutes = require('./routes/ro_mkt_item');
+app.use('/mktitem', mktitemRoutes);
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/status.html')
 })

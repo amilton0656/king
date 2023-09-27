@@ -2,22 +2,24 @@ const Sequelize = require('sequelize')
 
 const sequelize = require('../util/apinodeDBconnection')
 
-const Usuario = sequelize.define('usuarios', {
+const MktItem = sequelize.define('mkt_items', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  nome: Sequelize.STRING(60),
-  email: Sequelize.STRING(70),
-  senha: Sequelize.STRING(20),
-  imagem: Sequelize.BLOB('medium'),
+  usuario: Sequelize.STRING(10),
+  descricao: Sequelize.STRING,
+  quantidade: Sequelize.STRING(10),
+  grupo: Sequelize.STRING(10),
+  isbought: Sequelize.BOOLEAN,
+
 }, {
-  tableName: 'usuarios',
+  tableName: 'mkt_items',
   timestamp: false,
   createdAt: false,
   updatedAt: false
 });
 
-module.exports = Usuario
+module.exports = MktItem

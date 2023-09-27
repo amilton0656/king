@@ -1,11 +1,10 @@
-const MktHistorico = require('../models/mo_mkt_historico')
+const MktItem = require('../models/mo_mkt_item')
 const jwt = require('../util/jwt')
 const email = require('../testes/email')
 
-exports.addMktHistorico = (req, res, next) => {
+exports.addMktItem = (req, res, next) => {
   const registro = req.body
-  console.log(registro)
-  MktHistorico.create(registro)
+  MktItem.create(registro)
     .then(registro => {
       res.status(200).json(registro)
     })
@@ -15,12 +14,12 @@ exports.addMktHistorico = (req, res, next) => {
     })
 }
 
-exports.updMktHistorico = (req, res, next) => {
+exports.updMktItem = (req, res, next) => {
   const id = req.body.id
   const body = req.body
   console.log(id)
   console.log(body)
-  MktHistorico.findByPk(id)
+  MktItem.findByPk(id)
     .then(registro => {
       registro.update(body)
     })
@@ -33,10 +32,10 @@ exports.updMktHistorico = (req, res, next) => {
     })
 }
 
-exports.delMktHistorico = (req, res, next) => {
+exports.delMktItem = (req, res, next) => {
   const id = req.params.id
 
-  MktHistorico.findByPk(id)
+  MktItem.findByPk(id)
     .then(usu => {
       usu.destroy(usu)
     })
@@ -60,9 +59,9 @@ exports.delMktHistorico = (req, res, next) => {
   //   });
 }
 
-exports.getMktHistoricoById = (req, res, next) => {
+exports.getMktItemById = (req, res, next) => {
   const id = req.params.id
-  MktHistorico.findByPk(id)
+  MktItem.findByPk(id)
     .then(registro => {
       res.status(200).json(registro)
     })
@@ -72,15 +71,15 @@ exports.getMktHistoricoById = (req, res, next) => {
     })
 }
 
-exports.getMktHistoricoByDescricao = (req, res, next) => {
-  const { nome } = req.params
-  const busca = '%' + nome.toLowerCase() + '%'
+exports.getMktItemByDescricao = (req, res, next) => {
+  const { descricao } = req.params
+  const busca = '%' + descricao.toLowerCase() + '%'
 
-  MktHistorico.sequelize.query(`select *
-  from mkt_historico
-  where lower(descricao) like ?
+  MktItem.sequelize.query(`select *
+  from mkt_items
+  where lower(descricao) like :busca
   order by descricao`,
-    { replacements: [busca] })
+    { replacements: { busca } })
     .then(registro => {
       res.status(200).json(registro[0])
     })
@@ -90,10 +89,10 @@ exports.getMktHistoricoByDescricao = (req, res, next) => {
 }
 
 
-exports.getMktHistoricos = (req, res, next) => {
-  MktHistorico.sequelize.query(`
+exports.getMktItems = (req, res, next) => {
+  MktItem.sequelize.query(`
   select *
-  from mkt_historico
+  from mkt_items
   order by descricao`)
     .then(registros => {
       res.status(200).json(registros[0])
